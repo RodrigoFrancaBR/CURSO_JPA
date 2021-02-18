@@ -1,0 +1,12 @@
+Estado Transient é quando vc cria o objeto e este não tem vinculos com a JPA. 
+Ele existe na memória, possui informações mas não possui Id, e pode se tornar Managed futuramente.
+Quando executarmos a persistência com o método persiste(), estaremos transformando um objeto Transient em Managed, cuja característica é a sincronização automática com o banco de dados.
+ Alem de ganhar um Id automaticamente.
+
+Este estado Managed também é alcançável quando fazemos um find(). Logo o objeto retornado é gerenciado pela JPA
+
+Detached quando fechamos o gerenciamento através do entitymanager.close() não permitindo a sincronização automática quando há alteração no modelo, 
+
+Nosso objetivo é transformar as entidades para o estado Managed sempre que possível quando trabalhamos com JPA, para justamente podermos usufruir da sincronização automática.
+
+Então se temos um objeto  que é Detached neste momento, precisaremos alterar seu estado para o anterior. Para isso, criaremos mais um EntityManager após seu fechamento para podermos aplicar emf.merge() com a conta, transformando-a em Managed novamente.
