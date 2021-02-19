@@ -2,6 +2,7 @@ package br.com.alura.jpa.modelo;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -25,7 +26,7 @@ public class Movimentacao {
 	private BigDecimal valor;
 	
 	@ManyToMany
-	private List<Categoria> listaDeCategorias;
+	private List<Categoria> listaDeCategorias = new ArrayList<Categoria>();
 	
 	@ManyToOne
 	private Conta conta;
@@ -81,6 +82,10 @@ public class Movimentacao {
 	public void setCategorias(List<Categoria> listaDeCategorias) {
 		this.listaDeCategorias = listaDeCategorias;
 		
+	}
+
+	public List<Categoria> getCategorias() {
+		return this.listaDeCategorias;
 	}
 
 }
